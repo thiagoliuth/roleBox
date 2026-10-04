@@ -1,9 +1,7 @@
-# demo-django
-## Identificação:
+# RoleBox !
+## Desenvolvedores:
 
-**Aluno**: Thiago Ayolphi Liuth
-
-**Matrícula**: 23.1.4005
+Luiz Victor, Thalles, Thiago Ayolphi Liuth
 
 **Disciplina**: Programação Web
 
@@ -11,8 +9,7 @@
 
 **Universidade Federal de Ouro Preto, 2026**
 
-# Sistema Online
+# Proposta
 
-<img width="1565" height="868" alt="image" src="https://github.com/user-attachments/assets/1ab1adcf-2784-4c2c-848b-705916440e44" />
 
-<img width="1026" height="353" alt="image" src="https://github.com/user-attachments/assets/70e28575-d7cb-49c7-b31b-0a0b73c92703" />
+# Estrutura do Projeto
