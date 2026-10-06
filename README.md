@@ -1,7 +1,8 @@
-# PartyBox !
+# PartyBoxd !
+
 ## Desenvolvedores:
 
-Luiz Victor, Thalles, Thiago Ayolphi Liuth
+Luiz Victor, Thalles Felipe, Thiago Ayolphi Liuth
 
 **Disciplina**: Programação Web
 
@@ -30,7 +31,6 @@ Os eventos vão trazer informações como:
 - link para o Instagram
 
 - E, após o evento acontecer, é possível avaliar ele positivamente ou não, e ver uma nota média da avaliação dos usuários! ⭐
-
 
 # Estrutura do Projeto
 

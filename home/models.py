@@ -2,17 +2,18 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+
 class Categoria(models.Model):
     class CategoriaType(models.TextChoices):
-        MUSICA = 'musica', 'Música'
-        TEATRO = 'teatro', 'Teatro'
-        DANCA = 'danca', 'Dança'
-        CULINARIA = 'culinaria', 'Culinária'
-        ESPORTE = 'esporte', 'Esporte'
-        ARTE = 'arte', 'Arte'
-        FESTA = 'festa', 'Festa'
-        RAVE = 'rave', 'Rave'
-        
+        MUSICA = "musica", "Música"
+        TEATRO = "teatro", "Teatro"
+        DANCA = "danca", "Dança"
+        CULINARIA = "culinaria", "Culinária"
+        ESPORTE = "esporte", "Esporte"
+        ARTE = "arte", "Arte"
+        FESTA = "festa", "Festa"
+        RAVE = "rave", "Rave"
+
     tipo = models.CharField(max_length=20, choices=CategoriaType.choices)
 
     class Meta:
@@ -36,21 +37,21 @@ class Usuario(AbstractUser):
 
 class InteracaoEvento(models.Model):
     class InteractionType(models.TextChoices):
-        LIKE = 'like', 'Like'
-        DISLIKE = 'dislike', 'Dislike'
+        LIKE = "like", "Like"
+        DISLIKE = "dislike", "Dislike"
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    evento = models.ForeignKey('Evento', on_delete=models.CASCADE)
+    evento = models.ForeignKey("Evento", on_delete=models.CASCADE)
     interaction_type = models.CharField(max_length=10, choices=InteractionType.choices)
     interacted_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["user", "evento"],
-                name="unique_user_evento_interaction"
+                fields=["user", "evento"], name="unique_user_evento_interaction"
             )
         ]
+
 
 class Evento(models.Model):
     idEvento = models.AutoField(primary_key=True)
@@ -69,7 +70,7 @@ class Evento(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="eventos"
+        related_name="eventos",
     )
     votosPositivos = models.IntegerField(default=0)
     votosNegativos = models.IntegerField(default=0)
@@ -78,48 +79,46 @@ class Evento(models.Model):
     ehPublico = models.BooleanField(default=True)
     linkSite = models.URLField(blank=True, null=True)
     linkInstagram = models.URLField(blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='thumbnails/', blank=True, null=True)
+    thumbnail = models.ImageField(upload_to="thumbnails/", blank=True, null=True)
     usuario = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name="eventos"
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="eventos"
     )
 
 
 class EventoImage(models.Model):
-    image = models.ImageField(upload_to='evento_images/')
-    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name='evento_images')
+    image = models.ImageField(upload_to="evento_images/")
+    evento = models.ForeignKey(
+        Evento, on_delete=models.CASCADE, related_name="evento_images"
+    )
     criado_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-criado_em"]
         constraints = [
             models.UniqueConstraint(
-                fields=["image", "evento"],
-                name="unique_image_evento"
+                fields=["image", "evento"], name="unique_image_evento"
             )
         ]
 
     def __str__(self):
         return f"Imagem de {self.evento.nome}"
-    
+
+
 class Mensagem(models.Model):
     titulo = models.CharField(max_length=120)
     conteudo = models.TextField()
-    autor = models.CharField(max_length=80, default='Anônimo')
+    autor = models.CharField(max_length=80, default="Anônimo")
     criada_em = models.DateTimeField(auto_now_add=True)
     categoria = models.ForeignKey(
         Categoria,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="mensagens"
+        related_name="mensagens",
     )
 
-
     class Meta:
-        ordering = ['-criada_em']
+        ordering = ["-criada_em"]
 
     def __str__(self):
         return self.titulo
-

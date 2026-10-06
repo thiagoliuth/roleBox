@@ -1,70 +1,98 @@
-{% extends "base.html" %}
-
-{% block title %}PartyBox{% endblock %}
-
-{% block content %}
-
+{% extends "base.html" %} {% block title %}PartyBox{% endblock %} {% block
+content %}
 
 <section class="max-w-3xl">
-    <span class="inline-block px-3 py-1 bg-indigo-500/20 text-indigo-300 text-xs font-medium rounded-full mb-6">
+    <span
+        class="inline-block px-3 py-1 bg-indigo-500/20 text-indigo-300 text-xs font-medium rounded-full mb-6"
+    >
         E aí, como foi o rolê?
     </span>
     <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-        Olá, <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">rolezeiro!</span>
+        Olá,
+        <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400"
+            >rolezeiro!</span
+        >
     </h1>
     <p class="text-lg text-slate-300 mb-10 leading-relaxed">
-        Esta é a composição básica do PartyBox. Por enquanto isso aqui é tudo mato, mas logo logo você vai ver o que temos de bom por aqui!
+        Esta é a composição básica do PartyBox. Por enquanto isso aqui é tudo
+        mato, mas logo logo você vai ver o que temos de bom por aqui!
     </p>
 </section>
 
 <section class="grid md:grid-cols-3 gap-6 mb-16">
-    <article class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition">
+    <article
+        class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition"
+    >
         <div class="text-3xl mb-3">🎉​</div>
         <h2 class="text-xl font-semibold mb-2">Festas</h2>
-        <p class="text-slate-400 text-sm">Encontre as melhores festas da sua cidade.</p>
+        <p class="text-slate-400 text-sm">
+            Encontre as melhores festas da sua cidade.
+        </p>
     </article>
-    <article class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition">
+    <article
+        class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition"
+    >
         <div class="text-3xl mb-3">📅​</div>
         <h2 class="text-xl font-semibold mb-2">Eventos</h2>
-        <p class="text-slate-400 text-sm">Descubra os próximos eventos da sua região.</p>
+        <p class="text-slate-400 text-sm">
+            Descubra os próximos eventos da sua região.
+        </p>
     </article>
-    <article class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition">
+    <article
+        class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-6 hover:bg-white/10 transition"
+    >
         <div class="text-3xl mb-3">🎤​</div>
         <h2 class="text-xl font-semibold mb-2">Shows</h2>
-        <p class="text-slate-400 text-sm">Assista aos melhores shows da sua vida</p>
+        <p class="text-slate-400 text-sm">
+            Assista aos melhores shows da sua vida
+        </p>
     </article>
 </section>
 
-<section class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-8 max-w-3xl">
+<section
+    class="bg-white/5 backdrop-blur border border-white/10 rounded-xl p-8 max-w-3xl"
+>
     <h2 class="text-2xl font-bold mb-4">Mensagens do banco de dados</h2>
     <p class="text-slate-400 text-sm mb-6">
         Os itens abaixo são lidos do SQLite. Adicione novos pelo
-        <a href="/admin/" class="text-indigo-300 underline hover:text-indigo-200">painel admin</a>.
+        <a
+            href="/admin/"
+            class="text-indigo-300 underline hover:text-indigo-200"
+            >painel admin</a
+        >.
     </p>
 
     {% if mensagens %}
-        <ul class="space-y-3">
-            {% for m in mensagens %}
-                <li class="border-l-2 border-emerald-400 pl-4 py-1">
-                    <h3 class="font-semibold">{{ m.titulo }}</h3>
-                    {% if m.categoria %}
-                        <span class="inline-block px-2 py-0.5 mt-1 bg-indigo-500/20 text-indigo-300 text-xs rounded-full">
-                            {{ m.categoria.nome }}
-                        </span>
-                    {% endif %}
-                    <p class="text-sm text-slate-300">{{ m.conteudo }}</p>
-                    <span class="text-xs text-slate-400"> por {{ m.autor }}</span>
-                    <span class="text-xs text-slate-500">{{ m.criada_em|date:"d/m/Y H:i" }}</span>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul class="space-y-3">
+        {% for m in mensagens %}
+        <li class="border-l-2 border-emerald-400 pl-4 py-1">
+            <h3 class="font-semibold">{{ m.titulo }}</h3>
+            {% if m.categoria %}
+            <span
+                class="inline-block px-2 py-0.5 mt-1 bg-indigo-500/20 text-indigo-300 text-xs rounded-full"
+            >
+                {{ m.categoria.nome }}
+            </span>
+            {% endif %}
+            <p class="text-sm text-slate-300">{{ m.conteudo }}</p>
+            <span class="text-xs text-slate-400"> por {{ m.autor }}</span>
+            <span class="text-xs text-slate-500"
+                >{{ m.criada_em|date:"d/m/Y H:i" }}</span
+            >
+        </li>
+        {% endfor %}
+    </ul>
     {% else %}
-        <div class="text-center py-8 text-slate-400">
-            <p class="mb-2">Nenhuma mensagem ainda.</p>
-            <p class="text-sm">Crie uma no <a href="/admin/" class="text-indigo-300 underline">admin</a> para vê-la aqui.</p>
-        </div>
+    <div class="text-center py-8 text-slate-400">
+        <p class="mb-2">Nenhuma mensagem ainda.</p>
+        <p class="text-sm">
+            Crie uma no
+            <a href="/admin/" class="text-indigo-300 underline">admin</a> para
+            vê-la aqui.
+        </p>
+    </div>
     {% endif %}
 </section>
-
 
 {% endblock %}
