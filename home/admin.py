@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import Categoria, Mensagem, Evento, Usuario, EventoImage
+from .models import Categoria, Mensagem, Evento, Usuario, EventoImage, Role
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -39,3 +39,11 @@ class EventoImageAdmin(admin.ModelAdmin):
     list_display = ("evento", "image", "criado_em")
     list_filter = ("evento",)
     search_fields = ("evento__nome",)
+    
+# 2. Adicionamos este bloco novo no final:
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    # Escolhe quais colunas vão aparecer na lista do painel
+    list_display = ("nome", "data", "local") 
+    # Cria uma barra de pesquisa para buscar rolês pelo nome ou local
+    search_fields = ("nome", "local")
