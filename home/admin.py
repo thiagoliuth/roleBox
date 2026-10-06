@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import Categoria, Mensagem, Role, Usuario, RoleImage
+from .models import Categoria, Mensagem, Evento, Usuario, EventoImage
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -15,8 +15,8 @@ class MensagemAdmin(admin.ModelAdmin):
     search_fields = ("titulo", "conteudo")
 
 
-@admin.register(Role)
-class RoleAdmin(admin.ModelAdmin):
+@admin.register(Evento)
+class EventoAdmin(admin.ModelAdmin):
     list_display = ("nome", "categoria", "usuario", "ehPago", "ehPublico", "mediaClassificacao")
     list_filter = ("categoria", "ehPago", "ehPublico")
     search_fields = ("nome", "descricao", "usuario__username", "usuario__email")
@@ -34,8 +34,8 @@ class UsuarioAdmin(BaseUserAdmin):
     search_fields = ("username", "email", "first_name", "last_name")
     ordering = ("username",)
 
-@admin.register(RoleImage)
-class RoleImageAdmin(admin.ModelAdmin):
-    list_display = ("role", "image", "criado_em")
-    list_filter = ("role",)
-    search_fields = ("role__nome",)
+@admin.register(EventoImage)
+class EventoImageAdmin(admin.ModelAdmin):
+    list_display = ("evento", "image", "criado_em")
+    list_filter = ("evento",)
+    search_fields = ("evento__nome",)

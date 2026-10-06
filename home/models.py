@@ -34,31 +34,31 @@ class Usuario(AbstractUser):
         return self.get_full_name() or self.username
 
 
-class InteracaoRole(models.Model):
+class InteracaoEvento(models.Model):
     class InteractionType(models.TextChoices):
         LIKE = 'like', 'Like'
         DISLIKE = 'dislike', 'Dislike'
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    role = models.ForeignKey('Role', on_delete=models.CASCADE)
+    evento = models.ForeignKey('Evento', on_delete=models.CASCADE)
     interaction_type = models.CharField(max_length=10, choices=InteractionType.choices)
     interacted_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                fields=["user", "role"],
-                name="unique_user_role_interaction"
+                fields=["user", "evento"],
+                name="unique_user_evento_interaction"
             )
         ]
 
-class Role(models.Model):
-    idRole = models.AutoField(primary_key=True)
+class Evento(models.Model):
+    idEvento = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=120)
     descricao = models.TextField()
     criado_em = models.DateTimeField(auto_now_add=True)
-    dataRole = models.DateField()
-    horarioRole = models.TimeField()
+    dataEvento = models.DateField()
+    horarioEvento = models.TimeField()
     siglaEstado = models.CharField(max_length=2)
     cidade = models.CharField(max_length=80)
     bairro = models.CharField(max_length=80)
@@ -69,7 +69,7 @@ class Role(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="roles"
+        related_name="eventos"
     )
     votosPositivos = models.IntegerField(default=0)
     votosNegativos = models.IntegerField(default=0)
@@ -82,26 +82,26 @@ class Role(models.Model):
     usuario = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="roles"
+        related_name="eventos"
     )
 
 
-class RoleImage(models.Model):
-    image = models.ImageField(upload_to='role_images/')
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='role_images')
+class EventoImage(models.Model):
+    image = models.ImageField(upload_to='evento_images/')
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name='evento_images')
     criado_em = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-criado_em"]
         constraints = [
             models.UniqueConstraint(
-                fields=["image", "role"],
-                name="unique_image_role"
+                fields=["image", "evento"],
+                name="unique_image_evento"
             )
         ]
 
     def __str__(self):
-        return f"Imagem de {self.role.nome}"
+        return f"Imagem de {self.evento.nome}"
     
 class Mensagem(models.Model):
     titulo = models.CharField(max_length=120)
