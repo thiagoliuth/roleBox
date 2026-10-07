@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name="Evento",
+            name="EventoBase",
             fields=[
                 ("idEvento", models.AutoField(primary_key=True, serialize=False)),
                 ("nome", models.CharField(max_length=120)),
@@ -253,7 +253,7 @@ class Migration(migrations.Migration):
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="evento_images",
-                        to="home.evento",
+                        to="home.eventobase",
                     ),
                 ),
             ],
@@ -289,7 +289,8 @@ class Migration(migrations.Migration):
                 (
                     "evento",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="home.evento"
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="home.eventobase",
                     ),
                 ),
                 (

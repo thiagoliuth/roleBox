@@ -53,6 +53,14 @@
                         {% if request.resolver_match.url_name == 'index' %}aria-current="page"{% endif %}
                         >Início</a
                     >
+
+                    <a
+                        href="{% url 'cadastrar_evento' %}"
+                        {% if request.resolver_match.url_name == 'cadastrar_evento' %}aria-current="page"{% endif %}
+                        >Cadastrar Evento</a
+                    >
+
+
                     <a
                         href="{% url 'sobre' %}"
                         {% if request.resolver_match.url_name == 'sobre' %}aria-current="page"{% endif %}

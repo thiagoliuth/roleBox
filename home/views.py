@@ -13,10 +13,9 @@ def sobre(request):
 
 def cadastrar_evento(request):
     if request.method == "POST":
-        form = EventoForm(request.POST)
+        form = EventoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            # Redireciona para a página inicial (ajuste o nome da rota se necessário)
             return redirect("index")
     else:
         form = EventoForm()

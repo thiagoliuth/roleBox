@@ -45,7 +45,7 @@ class InteracaoEvento(models.Model):
         DISLIKE = "dislike", "Dislike"
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    evento = models.ForeignKey("EventoBase", on_delete=models.CASCADE)
+    evento = models.ForeignKey("Evento", on_delete=models.CASCADE)
     interaction_type = models.CharField(max_length=10, choices=InteractionType.choices)
     interacted_at = models.DateTimeField(auto_now_add=True)
 
@@ -57,7 +57,7 @@ class InteracaoEvento(models.Model):
         ]
 
 
-class EventoBase(models.Model):
+class Evento(models.Model):
     idEvento = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=120)
     descricao = models.TextField()
@@ -96,7 +96,7 @@ class EventoBase(models.Model):
 class EventoImage(models.Model):
     image = models.ImageField(upload_to="evento_images/")
     evento = models.ForeignKey(
-        EventoBase, on_delete=models.CASCADE, related_name="evento_images"
+        Evento, on_delete=models.CASCADE, related_name="evento_images"
     )
     criado_em = models.DateTimeField(auto_now_add=True)
 
@@ -134,17 +134,3 @@ class Mensagem(models.Model):
 
     def __str__(self):
         return self.titulo
-
-
-class Evento(models.Model):
-    nome = models.CharField(max_length=200)
-    descricao = models.TextField()
-    data = models.DateTimeField()
-    local = models.CharField(max_length=200)
-
-    class Meta:
-        verbose_name = "Evento"
-        verbose_name_plural = "Eventos"
-
-    def __str__(self):
-        return self.nome

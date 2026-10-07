@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             options={'ordering': ['tipo'], 'verbose_name': 'Categoria', 'verbose_name_plural': 'Categorias'},
         ),
         migrations.AlterModelOptions(
-            name='evento',
+            name='eventobase',
             options={'verbose_name': 'Evento', 'verbose_name_plural': 'Eventos'},
         ),
         migrations.AlterModelOptions(
