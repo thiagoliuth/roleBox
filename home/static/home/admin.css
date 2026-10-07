@@ -1,0 +1,60 @@
+:root, html[data-theme="light"], html[data-theme="dark"] {
+    --primary: var(--lb-panel);
+    --secondary: var(--lb-surface);
+    --accent: var(--lb-green);
+    --primary-fg: var(--lb-text-strong);
+    --body-fg: var(--lb-text-body);
+    --body-bg: var(--lb-bg);
+    --body-quiet-color: var(--lb-text);
+    --body-medium-color: var(--lb-text-body);
+    --body-loud-color: var(--lb-text-strong);
+    --header-color: var(--lb-text-strong);
+    --header-branding-color: var(--lb-text-strong);
+    --header-bg: var(--lb-bg);
+    --header-link-color: var(--lb-text);
+    --breadcrumbs-fg: var(--lb-text);
+    --breadcrumbs-link-fg: var(--lb-text-body);
+    --breadcrumbs-bg: var(--lb-surface);
+    --link-fg: var(--lb-blue);
+    --link-hover-color: var(--lb-blue);
+    --link-selected-fg: var(--lb-blue);
+    --hairline-color: var(--lb-border-soft);
+    --border-color: var(--lb-border);
+    --error-fg: var(--lb-error);
+    --message-success-bg: var(--lb-surface);
+    --message-warning-bg: var(--lb-panel);
+    --message-error-bg: var(--lb-panel);
+    --darkened-bg: var(--lb-surface);
+    --selected-bg: var(--lb-panel);
+    --selected-row: var(--lb-panel);
+    --button-fg: var(--lb-text-body);
+    --button-bg: var(--lb-panel);
+    --button-hover-bg: var(--lb-panel-hover);
+    --default-button-bg: var(--lb-green);
+    --default-button-hover-bg: var(--lb-green-hover);
+    --close-button-bg: var(--lb-panel);
+    --close-button-hover-bg: var(--lb-panel-hover);
+    --font-family-primary: var(--lb-font-ui);
+}
+#header { border-bottom: 1px solid var(--lb-border-soft); }
+#user-tools { font-size: 12px; }
+#site-name a { font-weight: 700; letter-spacing: -.03em; }
+.admin-label { margin-left: 12px; color: var(--lb-text-muted); font-size: 12px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
+.theme-toggle { display: none; }
+.module h2, .module caption { font-size: 12px; letter-spacing: .06em; }
+.row1, .row2 { background: var(--lb-bg); }
+.button, input[type="submit"], input[type="button"], .submit-row input, a.button { border-radius: var(--lb-radius); }
+.button.default, input[type="submit"].default, .submit-row input.default { color: var(--lb-bg); }
+.login input[type="submit"] { min-height: 44px; background: var(--lb-green); color: var(--lb-on-green); }
+.login input[type="submit"]:hover { background: var(--lb-green-hover); }
+input, textarea, select { accent-color: var(--lb-green); }
+input:not([type="submit"]):not([type="button"]), textarea, select { border-color: var(--lb-decoration); }
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--lb-focus); outline-offset: 2px; }
+input::placeholder, textarea::placeholder { color: var(--lb-text-muted); opacity: 1; }
+.object-tools a { border-radius: var(--lb-radius); }
+.login #container { border-radius: var(--lb-radius); }
+
+@media (max-width: 639px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), textarea, select { font-size: 16px; }
+    .submit-row input { min-height: 44px; }
+}
