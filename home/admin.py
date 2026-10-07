@@ -3,6 +3,10 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 from .models import Categoria, Evento, EventoImage, Mensagem, Usuario
 
+admin.site.site_header = "Administração do PartyBoxd"
+admin.site.site_title = "PartyBoxd"
+admin.site.index_title = "Painel de administração"
+
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):

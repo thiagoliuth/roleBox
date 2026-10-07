@@ -1,0 +1,3 @@
+<a href="{% url 'index' %}" {% if request.resolver_match.url_name == 'index' %}aria-current="page"{% endif %}>Início</a>
+<a href="{% url 'sobre' %}" {% if request.resolver_match.url_name == 'sobre' %}aria-current="page"{% endif %}>Sobre</a>
+<a href="{% url 'admin:index' %}" class="button button-secondary">Admin</a>

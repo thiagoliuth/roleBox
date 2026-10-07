@@ -18,6 +18,8 @@ class Categoria(models.Model):
 
     class Meta:
         ordering = ["tipo"]
+        verbose_name = "Categoria"
+        verbose_name_plural = "Categorias"
 
     def __str__(self):
         return self.get_tipo_display()
@@ -30,6 +32,8 @@ class Usuario(AbstractUser):
 
     class Meta:
         ordering = ["username"]
+        verbose_name = "Usuário"
+        verbose_name_plural = "Usuários"
 
     def __str__(self):
         return self.get_full_name() or self.username
@@ -84,6 +88,10 @@ class Evento(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="eventos"
     )
 
+    class Meta:
+        verbose_name = "Evento"
+        verbose_name_plural = "Eventos"
+
 
 class EventoImage(models.Model):
     image = models.ImageField(upload_to="evento_images/")
@@ -94,6 +102,8 @@ class EventoImage(models.Model):
 
     class Meta:
         ordering = ["-criado_em"]
+        verbose_name = "Imagem de evento"
+        verbose_name_plural = "Imagens de evento"
         constraints = [
             models.UniqueConstraint(
                 fields=["image", "evento"], name="unique_image_evento"
@@ -119,6 +129,8 @@ class Mensagem(models.Model):
 
     class Meta:
         ordering = ["-criada_em"]
+        verbose_name = "Mensagem"
+        verbose_name_plural = "Mensagens"
 
     def __str__(self):
         return self.titulo

@@ -14,7 +14,7 @@ Luiz Victor, Thalles Felipe, Thiago Ayolphi Liuth
 
 As cidades têm muitos eventos, dos mais variados tipos. Festas, baladas, raves, peças teatrais, festivais culinários, palestras, e muito mais!
 
-Assim, decidimos criar o PartyBox, um projeto para você encontrar os eventos da sua região e depois os avaliar.
+Assim, decidimos criar o PartyBoxd, um projeto para você encontrar os eventos da sua região e depois os avaliar.
 
 Os eventos vão trazer informações como:
 
