@@ -1,9 +1,9 @@
 from django import forms
-from .models import Role
+from .models import Evento
 
-class RoleForm(forms.ModelForm):
+class EventoForm(forms.ModelForm):
     class Meta:
-        model = Role
+        model = Evento
         fields = ['nome', 'descricao', 'data', 'local']
         # Injetamos as classes do Tailwind diretamente nos campos gerados pelo Django
         widgets = {

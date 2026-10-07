@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registar Rolê - PartyBox</title>
+    <title>Registar Evento - PartyBox</title>
     <!-- Importa o Tailwind diretamente para testes rápidos -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -31,7 +31,7 @@
         <div class="absolute inset-0 bg-[#14181c] bg-opacity-80 z-0"></div>
 
         <div class="relative z-10 w-full max-w-md bg-[#1c2228] p-8 rounded-lg shadow-2xl border border-[#2c3440]">
-            <h2 class="text-2xl text-white font-semibold text-center mb-6">Registar um novo rolê</h2>
+            <h2 class="text-2xl text-white font-semibold text-center mb-6">Registar um novo evento</h2>
 
             <form method="post" class="space-y-5">
                 {% csrf_token %}
@@ -51,7 +51,7 @@
                 <div class="pt-4">
                     <!-- Botão verde clássico do Letterboxd -->
                     <button type="submit" class="w-full bg-[#00b020] hover:bg-[#00e054] text-white font-bold uppercase tracking-widest text-sm py-3 px-4 rounded transition-colors duration-200 shadow-[0_0_10px_rgba(0,224,84,0.3)] hover:shadow-[0_0_15px_rgba(0,224,84,0.6)]">
-                        Guardar Rolê
+                        Guardar Evento
                     </button>
                 </div>
             </form>

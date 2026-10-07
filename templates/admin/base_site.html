@@ -1,0 +1,21 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}{{ title }} | PartyBoxd{% endblock %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    {% include "includes/fonts.html" %}
+<link rel="stylesheet" href="{% static 'home/theme.css' %}" />
+<link rel="stylesheet" href="{% static 'home/admin.css' %}" />
+{% endblock %}
+
+{% block branding %}
+<div id="site-name">
+    <a href="{% url 'admin:index' %}"
+        >PartyBoxd <span class="admin-label">Administração</span></a
+    >
+</div>
+{% endblock %}
+
+{% block dark-mode-vars %}{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .forms import RoleForm
+from .forms import EventoForm
 from .models import Mensagem
+
 
 def index(request):
     mensagens = Mensagem.objects.all()
@@ -10,14 +11,14 @@ def index(request):
 def sobre(request):
     return render(request, "home/sobre.html")
 
-def cadastrar_role(request):
-    if request.method == 'POST':
-        form = RoleForm(request.POST)
+def cadastrar_evento(request):
+    if request.method == "POST":
+        form = EventoForm(request.POST)
         if form.is_valid():
             form.save()
             # Redireciona para a página inicial (ajuste o nome da rota se necessário)
-            return redirect('index')
+            return redirect("index")
     else:
-        form = RoleForm()
+        form = EventoForm()
 
-    return render(request, 'home/cadastrar_role.html', {'form': form})
+    return render(request, "home/cadastrar_role.html", {"form": form})
