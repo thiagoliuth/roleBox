@@ -116,10 +116,18 @@ class Mensagem(models.Model):
         related_name="mensagens"
     )
 
-
     class Meta:
         ordering = ['-criada_em']
 
     def __str__(self):
         return self.titulo
 
+# Tabela do Rolê totalmente encostada na esquerda!
+class Role(models.Model):
+    nome = models.CharField(max_length=200)
+    descricao = models.TextField()
+    data = models.DateTimeField()
+    local = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nome
