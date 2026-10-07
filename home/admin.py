@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
-from .models import Categoria, Evento, EventoImage, Mensagem, Usuario
+from .models import Categoria, Evento, EventoImage, Mensagem, Role, Usuario
 
 admin.site.site_header = "Administração do PartyBoxd"
 admin.site.site_title = "PartyBoxd"
 admin.site.index_title = "Painel de administração"
-
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -54,3 +53,9 @@ class EventoImageAdmin(admin.ModelAdmin):
     list_display = ("evento", "image", "criado_em")
     list_filter = ("evento",)
     search_fields = ("evento__nome",)
+
+
+@admin.register(Role)
+class RoleAdmin(admin.ModelAdmin):
+    list_display = ("nome", "data", "local")
+    search_fields = ("nome", "local")
