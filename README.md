@@ -1,7 +1,8 @@
-# PartyBox !
+# PartyBoxd !
+
 ## Desenvolvedores:
 
-Luiz Victor, Thalles, Thiago Ayolphi Liuth
+Luiz Victor, Thalles Felipe, Thiago Ayolphi Liuth
 
 **Disciplina**: Programação Web
 
@@ -13,7 +14,7 @@ Luiz Victor, Thalles, Thiago Ayolphi Liuth
 
 As cidades têm muitos eventos, dos mais variados tipos. Festas, baladas, raves, peças teatrais, festivais culinários, palestras, e muito mais!
 
-Assim, decidimos criar o PartyBox, um projeto para você encontrar os eventos da sua região e depois os avaliar.
+Assim, decidimos criar o PartyBoxd, um projeto para você encontrar os eventos da sua região e depois os avaliar.
 
 Os eventos vão trazer informações como:
 
@@ -30,7 +31,6 @@ Os eventos vão trazer informações como:
 - link para o Instagram
 
 - E, após o evento acontecer, é possível avaliar ele positivamente ou não, e ver uma nota média da avaliação dos usuários! ⭐
-
 
 # Estrutura do Projeto
 
