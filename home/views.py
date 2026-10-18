@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 from .forms import EventoForm
-from .models import Mensagem
+from .models import Categoria, Evento, Mensagem
 
 
 def index(request):
@@ -13,13 +14,43 @@ def sobre(request):
     return render(request, "home/sobre.html")
 
 
-def cadastrar_evento(request):
-    if request.method == "POST":
-        form = EventoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("index")
-    else:
-        form = EventoForm()
+def evento_list(request):
+    q = request.GET.get("q", "").strip()
+    categoria_id = request.GET.get("categoria", "")
+    ordem = request.GET.get("ordem", "alfabetica")
 
-    return render(request, "home/cadastrar_role.html", {"form": form})
+    eventos = Evento.objects.select_related("categoria", "usuario")
+    if q:
+        eventos = eventos.filter(nome__icontains=q)
+    if categoria_id.isdecimal():
+        eventos = eventos.filter(categoria_id=categoria_id)
+
+    if ordem == "data":
+        eventos = eventos.order_by("dataEvento", "horarioEvento")
+    else:
+        ordem = "alfabetica"
+        eventos = eventos.order_by("nome")
+
+    return render(
+        request,
+        "home/eventos.html",
+        {
+            "eventos": eventos,
+            "categorias": Categoria.objects.all(),
+            "q": q,
+            "categoria_selecionada": categoria_id,
+            "ordem": ordem,
+        },
+    )
+
+
+def cadastrar_evento(request):
+    if request.method != "POST":
+        return redirect(f"{reverse('index')}#cadastro-evento")
+
+    form = EventoForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        return redirect("index")
+
+    return render(request, "home/index.html", {"mensagens": Mensagem.objects.all(), "evento_form": form})

@@ -47,10 +47,12 @@
                     >
 
                     <a
-                        href="{% url 'cadastrar_evento' %}"
-                        {% if request.resolver_match.url_name == 'cadastrar_evento' %}aria-current="page"{% endif %}
-                        >Cadastrar Evento</a
+                        href="{% url 'eventos' %}"
+                        {% if request.resolver_match.url_name == 'eventos' %}aria-current="page"{% endif %}
+                        >Eventos</a
                     >
+
+                    <button class="button button-primary" type="button" data-evento-open aria-haspopup="dialog">Cadastrar Evento</button>
 
 
                     <a
@@ -91,6 +93,12 @@
                             >Início</a
                         >
                         <a
+                            href="{% url 'eventos' %}"
+                            {% if request.resolver_match.url_name == 'eventos' %}aria-current="page"{% endif %}
+                            >Eventos</a
+                        >
+                        <button class="button button-primary" type="button" data-evento-open aria-haspopup="dialog">Cadastrar Evento</button>
+                        <a
                             href="{% url 'sobre' %}"
                             {% if request.resolver_match.url_name == 'sobre' %}aria-current="page"{% endif %}
                             >Sobre</a
@@ -110,6 +118,7 @@
         <main id="conteudo" class="site-width flex-1" tabindex="-1">
             {% block content %}{% endblock %}
         </main>
+        {% include "home/includes/evento_modal.html" %}
         <footer class="site-footer">
             <div
                 class="site-width flex flex-wrap items-center justify-between gap-4"
@@ -121,5 +130,32 @@
                 </nav>
             </div>
         </footer>
+        <script>
+            (() => {
+                const dialog = document.getElementById("cadastro-evento");
+                if (!dialog || typeof dialog.showModal !== "function") return;
+
+                let trigger = null;
+                document.querySelectorAll("[data-evento-open]").forEach((button) => {
+                    button.addEventListener("click", () => {
+                        trigger = button;
+                        dialog.showModal();
+                    });
+                });
+                dialog.querySelectorAll("[data-evento-close]").forEach((button) => {
+                    button.addEventListener("click", () => dialog.close());
+                });
+                dialog.addEventListener("click", (event) => {
+                    if (event.target === dialog) dialog.close();
+                });
+                dialog.addEventListener("close", () => {
+                    if (trigger) trigger.focus();
+                });
+
+                if (dialog.hasAttribute("data-evento-open-on-load") || window.location.hash === "#cadastro-evento") {
+                    dialog.showModal();
+                }
+            })();
+        </script>
     </body>
 </html>

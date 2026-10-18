@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Eventos • PartyBoxd{% endblock %}
+
+{% block content %}
+<header class="page-heading">
+    <h1>Eventos</h1>
+    <p>Descubra o que acontece na sua região.</p>
+</header>
+
+<form class="event-filters" method="get" action="{% url 'eventos' %}">
+    <div class="event-filter-field">
+        <label for="busca-eventos">Buscar por nome</label>
+        <input id="busca-eventos" type="search" name="q" value="{{ q }}" placeholder="Ex.: show, feira...">
+    </div>
+    <div class="event-filter-field">
+        <label for="categoria-eventos">Categoria</label>
+        <select id="categoria-eventos" name="categoria">
+            <option value="">Todas as categorias</option>
+            {% for categoria in categorias %}
+            <option value="{{ categoria.pk }}" {% if categoria_selecionada == categoria.pk|stringformat:"s" %}selected{% endif %}>{{ categoria.get_tipo_display }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="event-filter-field">
+        <label for="ordem-eventos">Ordenar por</label>
+        <select id="ordem-eventos" name="ordem">
+            <option value="alfabetica" {% if ordem == "alfabetica" %}selected{% endif %}>Nome (A–Z)</option>
+            <option value="data" {% if ordem == "data" %}selected{% endif %}>Data do evento</option>
+        </select>
+    </div>
+    <div class="event-filter-actions">
+        <button class="button button-primary" type="submit">Filtrar</button>
+        <a class="text-link" href="{% url 'eventos' %}">Limpar</a>
+    </div>
+</form>
+
+{% if eventos %}
+<section class="event-grid" aria-label="Lista de eventos">
+    {% for evento in eventos %}
+    <article class="event-card">
+        {% if evento.thumbnail %}
+        <img class="event-card-image" src="{{ evento.thumbnail.url }}" alt="Imagem do evento {{ evento.nome }}">
+        {% else %}
+        <div class="event-card-placeholder" aria-hidden="true"><span>PartyBoxd</span></div>
+        {% endif %}
+        <div class="event-card-content">
+            <div class="event-card-heading">
+                <h2>{{ evento.nome }}</h2>
+                {% if evento.categoria %}<span class="chip">{{ evento.categoria.get_tipo_display }}</span>{% endif %}
+            </div>
+            <p class="event-card-location">{{ evento.cidade }}, {{ evento.siglaEstado }}</p>
+            <p class="event-card-date"><time datetime="{{ evento.dataEvento|date:'Y-m-d' }}">{{ evento.dataEvento|date:"d/m/Y" }}</time> · {{ evento.horarioEvento|time:"H:i" }}</p>
+            <div class="event-card-meta">
+                <span class="event-price">{% if evento.ehPago %}Pago{% else %}Grátis{% endif %}</span>
+                <span class="event-rating" aria-label="Média {{ evento.mediaClassificacao|floatformat:1 }}, {{ evento.votosPositivos|add:evento.votosNegativos }} votos">★ {{ evento.mediaClassificacao|floatformat:1 }} · {{ evento.votosPositivos|add:evento.votosNegativos }} votos</span>
+            </div>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<div class="empty-state">
+    <h2>Nenhum evento encontrado.</h2>
+    <p>{% if q or categoria_selecionada %}Tente ajustar os filtros ou limpar a busca.{% else %}Ainda não há eventos cadastrados. Volte em breve para descobrir novidades.{% endif %}</p>
+    {% if q or categoria_selecionada %}<a class="button button-secondary" href="{% url 'eventos' %}">Limpar filtros</a>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

@@ -14,6 +14,10 @@ class Migration(migrations.Migration):
                 migrations.DeleteModel(
                     name="Evento",
                 ),
+                migrations.RenameModel(
+                    old_name="EventoBase",
+                    new_name="Evento",
+                ),
             ],
             state_operations=[
                 migrations.DeleteModel(
