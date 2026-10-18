@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render
+
 from .forms import EventoForm
 from .models import Mensagem
 
@@ -10,6 +11,7 @@ def index(request):
 
 def sobre(request):
     return render(request, "home/sobre.html")
+
 
 def cadastrar_evento(request):
     if request.method == "POST":

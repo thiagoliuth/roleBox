@@ -1,4 +1,5 @@
-# PartyBox !
+# PartyBoxd !
+
 ### Desenvolvedores:
 
 Luiz Victor, Thalles Felipe, Thiago Ayolphi Liuth
